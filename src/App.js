@@ -14,19 +14,19 @@ import { Switch, Route } from "react-router-dom";
 function App() {
   const [users,setUsers] = useState([]) 
   const [darkMode,setDarkMode] = useState(false)
-  const [token,setToken] = useState(false)
-  
+  const [token,setToken] = useState( JSON.parse(localStorage.getItem('token')))
 
 const theme=createMuiTheme({
   palette:{
     type:darkMode ? "dark": "light"
-          }
+   }
 })
 
 useEffect(()=>{ 
 fetch('https://jsonplaceholder.typicode.com/users')
   .then(response => response.json())
   .then(json =>{ setUsers(json)
+
   })
 },[])
 
@@ -36,11 +36,10 @@ function validateEmail(email) {
 }
 
 function validate(email) {
-
   if (validateEmail(email)) {
-    alert(email + " is valid :)");
+     alert(email + " is valid :)");
   } else {
-    alert(email + " is not valid :(");
+     alert(email + " is not valid :(");
   }
   return false;
 }
@@ -48,14 +47,14 @@ function validate(email) {
   return (
   <div  className="App">
    <ThemeProvider theme={theme}>
-      <Paper style={{height:'100vh'}}>
+      <Paper style={{height:'110vh'}}>
         <Header  token={token} setToken={setToken}  darkMode={darkMode}setDarkMode={setDarkMode} />
       <Switch>
             <Route
                 exact
                 path = "/"
                 render = {(routeInfo) => (
-                  <Login validate={validate} routeInfo={routeInfo} setToken={setToken} />
+                  <Login validate={validate} routeInfo={routeInfo} token={token} setToken={setToken} />
                 )}
               />
 
@@ -75,7 +74,7 @@ function validate(email) {
                 render={(routeInfo) => (
                   <User           
                       {...routeInfo}
-                      users={users} routeInfo = {routeInfo}  /> 
+                      users={users}  routeInfo = {routeInfo}   /> 
                  )}
               />
 
@@ -83,7 +82,7 @@ function validate(email) {
                 exact
                 path="/create-user"
                 render={(routeInfo) => (
-                  <CreateUser validateEmail={validateEmail} routeInfo = {routeInfo}  />
+                  <CreateUser validateEmail={validateEmail}  routeInfo = {routeInfo}  />
                 )}
               />
 
@@ -101,7 +100,7 @@ function validate(email) {
     </Paper>
   </ThemeProvider>
 
-    </div>
+</div>
 
   );
 }

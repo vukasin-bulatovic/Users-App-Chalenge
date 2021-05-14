@@ -9,8 +9,7 @@ function EditUser(props) {
     const [name,setName]=useState('')
     const user = users.find((e) => props.match.params.id == e.id);
 
-    
-       const updateUser = (e) =>{
+    const updateUser = (e) =>{
          fetch("https://jsonplaceholder.typicode.com/users/" + e.id,
             {
                 method: 'PUT',
@@ -28,17 +27,11 @@ function EditUser(props) {
                     alert('user was updated')
                      props.routeInfo.history.push("/users")
                 } } )       
-
     }
-
-    
      const papaerStyle={padding:20,height:'70vh',width:280,margin:"20px auto"}
      const buttonStyle={padding:10,width:280,margin:"20px auto"}
 
-
-
-    return (
-     
+    return (   
         <div>
            <Grid>
                <Paper elevation={10} style={papaerStyle} >
@@ -57,10 +50,8 @@ function EditUser(props) {
                          </Button >
                      </form>
                 </Paper>
-            </Grid>
-            
-        </div>
-        
+            </Grid>          
+        </div>    
     )
 }
 

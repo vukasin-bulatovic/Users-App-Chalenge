@@ -11,9 +11,6 @@ import SaveIcon from '@material-ui/icons/Save'
 import DeleteIcon from '@material-ui/icons/Delete'
 import { ButtonGroup } from '@material-ui/core';
 
-
-
-
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -26,43 +23,41 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
 function User(props) {
       
   const [user,setUser]=useState()
 
-      useEffect(()=>{
-        fetch("https://jsonplaceholder.typicode.com/users/" + props.match.params.id)
-        .then(res=>res.json())
-        .then(data=>setUser(data))
-      },[])
-
+  useEffect(()=>{
+    fetch("https://jsonplaceholder.typicode.com/users/" + props.match.params.id)
+    .then(res=>res.json())
+    .then(data=>setUser(data))
+   },[])
 
 
   const delReport = () => {
     fetch("https://jsonplaceholder.typicode.com/users/" + props.match.params.id, {
       method: "DELETE",
       headers: {
-                'Content-type': 'application/json',
+        'Content-type': 'application/json',
       },
     }).then(res =>{
-           if(res.ok){
+        if(res.ok){
            alert('user was deleted')
            props.routeInfo.history.push("/users")
-           }})
         }
+    })   
+  }
 
-        const classes = useStyles();
-            const papaerStyle={padding:20,height:'70vh',width:280,margin:"20px auto"}
+  const classes = useStyles();
+  const papaerStyle={padding:20,height:'70vh',width:280,margin:"20px auto"}
 
 
-    return (
-      <div style={papaerStyle}>
-        {
+  return (
+    <div style={papaerStyle}>
+      {
         user !==undefined &&             
     <List className={classes.root}>
-        <ListItem alignItems="flex-start">
-              
+        <ListItem alignItems="flex-start">     
           <ListItemText
             primary=
             {`Company: ${user.company.name}`}
@@ -71,7 +66,6 @@ function User(props) {
         <Divider  />
 
         <ListItem alignItems="flex-start">
-              
           <ListItemText
             primary=
             {`Email: ${user.email}`}
@@ -79,8 +73,7 @@ function User(props) {
         </ListItem>
         <Divider  />
 
-        <ListItem alignItems="flex-start">
-              
+        <ListItem alignItems="flex-start">      
           <ListItemText
             primary=
             {`ID: ${user.id}`}
@@ -88,8 +81,7 @@ function User(props) {
         </ListItem>
         <Divider  />
 
-        <ListItem alignItems="flex-start">
-              
+        <ListItem alignItems="flex-start">       
           <ListItemText
             primary=
             {`Name: ${user.name}`}
@@ -97,8 +89,7 @@ function User(props) {
         </ListItem>
         <Divider  />
 
-        <ListItem alignItems="flex-start">
-              
+        <ListItem alignItems="flex-start">       
           <ListItemText
             primary=
             {`Phone: ${user.phone}`}
@@ -114,8 +105,7 @@ function User(props) {
         </ListItem>
         <Divider  />
 
-        <ListItem alignItems="flex-start">
-              
+        <ListItem alignItems="flex-start"> 
           <ListItemText
             primary=
             {`Website: ${user.website}`}
@@ -144,9 +134,9 @@ function User(props) {
           </ButtonGroup>     
         </ListItem>
       </List>
-}
-      </div>
-    );
+  }
+  </div>
+);
 }
 
 export default User
