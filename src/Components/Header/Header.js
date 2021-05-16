@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 function Header(props) {
     const{darkMode,setDarkMode,token,setToken} = props
+
     return (
         <div style = {{display:'flex',alignItems:"center",justifyContent:'space-around',backgroundColor:'grey',height:100, marginBottom:40}}>
             <Switch  checked={darkMode} onChange={()=>setDarkMode(!darkMode)}></Switch>
@@ -15,7 +16,7 @@ function Header(props) {
                         variant='contained'
                         onClick={()=>{
                             setToken(false)
-                            localStorage.setItem('token', JSON.stringify(token));
+                            localStorage.setItem('token', JSON.stringify(false));
                          }
                         }
                     >Log out

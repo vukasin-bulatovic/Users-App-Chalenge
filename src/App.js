@@ -14,7 +14,8 @@ import { Switch, Route } from "react-router-dom";
 function App() {
   const [users,setUsers] = useState([]) 
   const [darkMode,setDarkMode] = useState(false)
-  const [token,setToken] = useState( JSON.parse(localStorage.getItem('token')))
+  const [token,setToken] = useState(false)
+  
 
 const theme=createMuiTheme({
   palette:{
@@ -26,8 +27,10 @@ useEffect(()=>{
 fetch('https://jsonplaceholder.typicode.com/users')
   .then(response => response.json())
   .then(json =>{ setUsers(json)
-
   })
+
+  JSON.parse(localStorage.getItem('token')) ?
+  setToken(true):setToken(false)
 },[])
 
 function validateEmail(email) {

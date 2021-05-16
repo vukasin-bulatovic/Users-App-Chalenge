@@ -22,7 +22,7 @@ function Login(props) {
 
     const papaerStyle = {padding:20,height:'70vh',width:280,margin:"20px auto"}
     const buttonStyle = {padding:10,width:280,margin:"20px auto"}
-
+  
     return (
         <div>
             <Grid>
@@ -35,9 +35,9 @@ function Login(props) {
                     <Button
                          style={buttonStyle} onClick={()=>{
                             validate(mail)
-                            setToken(true)
                              newMail()
-                            localStorage.setItem('token', JSON.stringify(token));
+                             setToken(true)
+                            localStorage.setItem('token', JSON.stringify(true));
                            }
                         }  
                     >Sign in
